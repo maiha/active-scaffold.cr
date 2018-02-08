@@ -1,0 +1,28 @@
+name: active_scaffold
+version: 0.1.0
+
+authors:
+  - maiha <maiha@wota.jp>
+
+license: MIT
+
+dependencies:
+  amber:
+    github: amberframework/amber
+    version: ~> 0.6.5
+
+  db:
+    github: crystal-lang/crystal-db
+    version: ~> 0.5.0
+
+  granite_orm:
+    github: amberframework/granite-orm
+    branch: master
+
+  var:
+    github: maiha/var.cr
+    version: ">= 0.2.1"
+
+development_dependencies:
+  sqlite3:
+    github: crystal-lang/crystal-sqlite3
