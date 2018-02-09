@@ -7,8 +7,8 @@ module ActiveScaffold
       var columns : Data::Columns(T)
 
       def initialize
-        self.system_columns = Data::FixedColumns.new(build_columns)
-        self.columns = Data::LazyColumns(T).new(system_columns)
+        self.system_columns = Data::FixedColumns(T).new(build_columns)
+        self.columns        = Data::LazyColumns(T).new(system_columns)
         self.columns.filter = Set.new(Data::Column(T).contents.map(&.name))
         self.list = List(T).new(self)
       end

@@ -12,5 +12,11 @@ describe ActiveScaffold::Config::Core do
       config.columns = ["last_name"]
       config.columns.map(&.name).should eq(["last_name"])
     end
+
+    it "overwrites previous values" do
+      config.columns = ["last_name"]
+      config.columns = ["id", "first_name"]
+      config.columns.map(&.name).should eq(["id", "first_name"])
+    end
   end
 end
