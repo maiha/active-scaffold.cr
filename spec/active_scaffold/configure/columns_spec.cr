@@ -1,6 +1,19 @@
 require "./spec_helper"
 
 describe ActiveScaffold::Config::Core do
+  describe "#label" do
+    it "returns a model name in default" do
+      config.label.should eq("User")
+    end
+  end
+
+  describe "#label=" do
+    it "sets label" do
+      config.label = "user page"
+      config.label.should eq("user page")
+    end
+  end
+
   describe "#columns" do
     it "returns content columns in default" do
       config.columns.map(&.name).should eq(["first_name", "last_name"])
