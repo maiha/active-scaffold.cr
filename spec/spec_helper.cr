@@ -10,10 +10,6 @@ Granite::ORM.settings.logger = Logger.new(nil)
 require "./models"
 require "./controllers"
 
-def config
-  UserController.active_scaffold_config
-end
-
 User.drop_and_create
 Spec.before_each do
   User.clear

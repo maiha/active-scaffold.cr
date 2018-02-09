@@ -12,16 +12,22 @@ module ActiveScaffold
       abstract def columns : Array(Column(T))
 
       def set(names : Array(String))
+        before_update
         filter.clear
         add(names)
       end
 
       def add(names : Array(String))
+        before_update
         filter.concat(names)
       end
 
       def del(names : Array(String))
+        before_update
         ignore.concat(names)
+      end
+
+      protected def before_update
       end
     end
   end

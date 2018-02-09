@@ -7,9 +7,6 @@ module ActiveScaffold
         @@active_scaffold_config ||= ActiveScaffold::Config::Core(T).new
       end
 
-      active_scaffold_config.label = "{{T}}"
-      columns = active_scaffold_config.columns
-
       def self.active_scaffold(&block)
         yield(active_scaffold_config)
       end
