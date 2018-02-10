@@ -37,24 +37,31 @@ describe ActiveScaffold::Config::Core do
     end
   end
 
+  describe "#actions" do
+    it "is mutable" do
+      config.actions = ["create", "update", "show"]
+      config.actions.del "create"
+      config.actions.add "delete"
+
+      config.actions.to_a.should eq(["update", "show", "delete"])
+    end
+  end
+
   describe "#list" do
     it "builds a new config for List(T)" do
       config.list.should be_a(ActiveScaffold::Config::List(User))
     end
 
-    it "inherits column values" do
+    it "inherits column values lazily when first access" do
       config.columns = ["first_name"]
       config.list.columns.map(&.name).should eq(["first_name"])
     end
 
-    it "doesn't share column values once overwrites it" do
+    it "doesn't inherit values anymore after it is accessed" do
       config.columns = ["first_name"]
+      config.list.columns
+      config.columns = ["id"]
       config.list.columns.map(&.name).should eq(["first_name"])
-
-      config.list.columns = ["id"]
-      config.columns = ["last_name"]
-
-      config.list.columns = ["id"]
     end
   end
 end

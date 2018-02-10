@@ -3,8 +3,10 @@ module ActiveScaffold::Actions
     macro included
       def index
         count = {{T}}.count
-        columns = active_scaffold_config.list.columns
-        records = {{T}}.all("limit 3")
+        list  = active_scaffold_config.list
+        actions = list.actions
+        columns = list.columns
+        records = {{T}}.all("limit #{list.per_page}")
         render("index.slang")
       end
     end

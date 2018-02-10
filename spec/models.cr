@@ -3,6 +3,10 @@ class User < Granite::ORM::Base
   field first_name : String
   field last_name : String
 
+  def names : Array(String)
+    [first_name, last_name]
+  end
+  
   def self.drop_and_create
     exec "DROP TABLE IF EXISTS users"
     exec <<-SQL

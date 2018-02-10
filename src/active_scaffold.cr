@@ -10,5 +10,6 @@ module ActiveScaffold(T)
   macro included
     include ActiveScaffold::Configure(T)
     include ActiveScaffold::Actions::List(T)
+    include ActiveScaffold::Actions::Show(T)
   end
 end
