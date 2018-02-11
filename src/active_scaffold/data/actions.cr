@@ -1,43 +1,20 @@
+require "./named_acl"
+require "./action"
+
 module ActiveScaffold
   module Data
     class Actions(T)
-      include Enumerable(String)
-      delegate each, to: names
+      include NamedAcl(Action(T))
 
-      var names : Set(String)
-
-      def initialize(names : Array(String))
-        set(names)
+      def initialize(@hash : Hash(String, Action(T)))
       end
 
-      def dup
-        dup = super()
-        dup.names = names.dup
-        dup
-      end
-
-      def set(names : Array(String))
-        self.names = Set(String).new.concat(names)
-      end
-
-      def add(names : Array(String))
-        self.names.concat(names)
-      end
-
-      def add(name : String)
-        self.names.add(name)
-      end
-
-      def del(name : String)
-        self.names.delete(name)
-      end
-
-      def del(names : Array(String))
-        self.names.delete(names)
-      end
-
-      def del(name : String)
-        self.names.delete(name)
+      def self.default
+        hash = Hash(String, Action(T)).new
+        %w( list create show update delete search nested subform ).each do |name|
+          hash[name] = Data::Action(T).new(name)
+        end
+        return new(hash)
       end
     end
   end

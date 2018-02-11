@@ -16,6 +16,10 @@ module ActiveScaffold
         {% end %}
         return nil
       end
+
+      def to_s(io : IO)
+        io << name
+      end
     end
   end
 end

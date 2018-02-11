@@ -26,7 +26,7 @@ describe ActiveScaffold::Configure do
     it "affects local config creation" do
       global.columns = ["id"]
       local = UserConfig.new.active_scaffold_config
-      local.columns.map(&.name).should eq(["id"])
+      local.columns.names.should eq(["id"])
     end
 
     it "doesn't affect existing local configs" do
@@ -35,7 +35,7 @@ describe ActiveScaffold::Configure do
       local.columns = ["id"]
       global.columns = ["first_name"]
 
-      local.columns.map(&.name).should eq(["id"])
+      local.columns.names.should eq(["id"])
     end
   end
 end

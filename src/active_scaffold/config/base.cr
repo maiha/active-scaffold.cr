@@ -55,8 +55,7 @@ module ActiveScaffold
         if base = parent?
           base.actions.dup
         else
-          names = %w( create list search update delete show nested subform )
-          Data::Actions(T).new(names)
+          Data::Actions(T).default
         end
       end
 

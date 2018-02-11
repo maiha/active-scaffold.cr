@@ -2,6 +2,9 @@ require "amber"
 require "granite_orm"
 require "var"
 
+module ActiveScaffold(T)
+end
+
 require "./active_scaffold/data/*"
 require "./active_scaffold/configure"
 require "./active_scaffold/actions/*"

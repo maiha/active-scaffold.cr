@@ -20,20 +20,20 @@ describe ActiveScaffold::Config::Core do
 
   describe "#columns" do
     it "returns content columns in default" do
-      config.columns.map(&.name).should eq(["first_name", "last_name"])
+      config.columns.names.should eq(["first_name", "last_name"])
     end
   end
 
   describe "#columns=" do
     it "sets columns" do
       config.columns = ["last_name"]
-      config.columns.map(&.name).should eq(["last_name"])
+      config.columns.names.should eq(["last_name"])
     end
 
     it "overwrites previous values" do
       config.columns = ["last_name"]
       config.columns = ["id", "first_name"]
-      config.columns.map(&.name).should eq(["id", "first_name"])
+      config.columns.names.should eq(["id", "first_name"])
     end
   end
 
@@ -43,7 +43,7 @@ describe ActiveScaffold::Config::Core do
       config.actions.del "create"
       config.actions.add "delete"
 
-      config.actions.to_a.should eq(["update", "show", "delete"])
+      config.actions.names.should eq ["update", "show", "delete"]
     end
   end
 
@@ -54,14 +54,14 @@ describe ActiveScaffold::Config::Core do
 
     it "inherits column values lazily when first access" do
       config.columns = ["first_name"]
-      config.list.columns.map(&.name).should eq(["first_name"])
+      config.list.columns.names.should eq(["first_name"])
     end
 
     it "doesn't inherit values anymore after it is accessed" do
       config.columns = ["first_name"]
       config.list.columns
       config.columns = ["id"]
-      config.list.columns.map(&.name).should eq(["first_name"])
+      config.list.columns.names.should eq(["first_name"])
     end
   end
 end
