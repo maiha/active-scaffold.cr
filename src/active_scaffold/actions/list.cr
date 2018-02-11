@@ -7,6 +7,7 @@ module ActiveScaffold::Actions
         actions = list.actions
         columns = list.columns
         records = {{T}}.all("limit #{list.per_page}")
+        links   = list.action_links
         render("index.slang")
       end
     end

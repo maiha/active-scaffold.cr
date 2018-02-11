@@ -11,6 +11,12 @@ module ActiveScaffold
         self.sorting = {{T}}.primary_name
         {% end %}
       end
+
+      def link
+        link = Data::ActionLink(T).new("list", label: "list", type: "members")
+        link.url = "/:controller"
+        return link
+      end
     end
   end
 end

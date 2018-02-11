@@ -26,6 +26,13 @@ class UserController < ApplicationController
 
   active_scaffold do |config|
     config.columns = ["first_name", "last_name"]
+    config.actions = ["list", "show"]
+    config.action_links["show"].label = "View"
+
+	config.show.label = "user(%s)"
+    config.show.action_links = ["top", "list"]
+    config.show.action_links["top"].label = "TOP"
+    config.show.action_links["list"].label = "back"
   end
 end
 ```

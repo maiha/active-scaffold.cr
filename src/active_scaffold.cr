@@ -1,6 +1,7 @@
 require "amber"
 require "granite_orm"
 require "var"
+require "pretty"
 
 module ActiveScaffold(T)
 end

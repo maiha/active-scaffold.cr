@@ -23,6 +23,10 @@ dependencies:
     github: maiha/var.cr
     version: ">= 0.2.1"
 
+  pretty:
+    github: maiha/pretty.cr
+    version: ">= 0.5.6"
+
 development_dependencies:
   sqlite3:
     github: crystal-lang/crystal-sqlite3
