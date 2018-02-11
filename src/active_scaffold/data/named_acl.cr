@@ -1,12 +1,6 @@
 module ActiveScaffold
   module Data
     module NamedAcl(T)
-      macro included
-        def self.from_array(array : Array(T)) : Hash(String, T)
-          
-        end
-      end
-
       include Enumerable(T)
       delegate each, to: current
 
@@ -25,7 +19,7 @@ module ActiveScaffold
         self.blacks = Set(String).new
       end
 
-      def set(names : Array(String))
+      def set(names : Enumerable(String))
         self.whites = Set(String).new
         whites.concat(names)
       end
@@ -51,6 +45,18 @@ module ActiveScaffold
         del([name])
       end
 
+      # returns an element for the given name if exists
+      # otherwise returns nil
+      def []?(name : String) : T?
+        @hash[name]?
+      end
+      
+      # returns an element for the given name if exists
+      # otherwise build it
+      def [](name : String) : T
+        @hash[name] ||= T.new(name)
+      end
+      
       def current : Array(T)
         if whites.any?
           # respect order

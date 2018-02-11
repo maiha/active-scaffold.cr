@@ -4,7 +4,7 @@ class User < Granite::ORM::Base
   field last_name : String
 
   def names : Array(String)
-    [first_name, last_name]
+    [first_name, last_name].compact
   end
   
   def self.drop_and_create

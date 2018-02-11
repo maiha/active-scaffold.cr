@@ -1,6 +1,6 @@
 require "./spec_helper"
 
-private record NamedValue, name : String, value : Int32  
+private record NamedValue, name : String, value : Int32? = 0
 
 private class NamedFilter
   include ActiveScaffold::Data::NamedAcl(NamedValue)
@@ -105,6 +105,33 @@ describe ActiveScaffold::Data::Columns do
     end
   end
 
+  describe "#[]?" do
+    it "returns an element if exists" do
+      filter = new_filter
+      filter["1"]?.try(&.value).should eq 1
+    end
+
+    it "returns nil if missing" do
+      filter = new_filter
+      filter["x"]?.should eq nil
+    end
+  end
+  
+  describe "#[]" do
+    it "returns an element if exists" do
+      filter = new_filter
+      filter["1"].name.should eq "1"
+    end
+
+    it "builds and returns a new element if missing" do
+      filter = new_filter
+      filter.names.should eq ["1", "2", "3", "4", "5"]
+
+      filter["x"].name.should eq "x"
+      filter.names.should eq ["1", "2", "3", "4", "5", "x"]
+    end
+  end
+  
   describe "#dup" do
     it "works" do
       filter1 = new_filter
