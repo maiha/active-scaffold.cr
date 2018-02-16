@@ -18,14 +18,15 @@ module ActiveScaffold
         {% for m in T.methods %}
           {% if m.visibility == :public && m.args.size == 0 && !m.splat_index && !m.double_splat && !m.block_arg && m.name.stringify =~ /[^!=]$/ %}
             {% if !%w( save destroy params to_h valid? ).includes?(m.name) %}
-              hash["{{m.name}}"] = Column(T).new("{{m.name}}")
+              column = Column(T).new("{{m.name}}", method: true)
+              hash["{{m.name}}"] = column
             {% end %}
           {% end %}
         {% end %}
         return Columns(T).new(hash)
       end
 
-      def self.from_model : Columns(T)
+      def self.content_columns : Columns(T)
         columns = all
         columns.set({{T::FIELDS.keys.map(&.stringify)}})
         return columns

@@ -16,7 +16,8 @@ dependencies:
     version: ~> 0.5.0
 
   granite_orm:
-    github: amberframework/granite-orm
+    #github: amberframework/granite-orm
+    github: maiha/granite-orm
     branch: master
 
   var:

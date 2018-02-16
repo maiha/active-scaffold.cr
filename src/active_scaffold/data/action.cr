@@ -5,6 +5,10 @@ module ActiveScaffold
 
       def initialize(@name : String)
       end
+
+      def to_s(io : IO)
+        io << name
+      end
     end
   end
 end

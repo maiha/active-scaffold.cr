@@ -66,8 +66,8 @@ module ActiveScaffold
         end
 
         return (names - blacks.to_a).map{|name|
-          @hash[name]?
-        }.compact
+          self[name]
+        }
       end
 
       def names : Array(String)

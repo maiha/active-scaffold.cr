@@ -1,0 +1,3 @@
+div class="active-scaffold"
+  div class="show-view #{params[:controller]}-view view"
+    == render(partial: "show")

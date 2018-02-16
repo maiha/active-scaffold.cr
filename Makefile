@@ -16,6 +16,7 @@ spec:
 assets: 
 	cp src/active_scaffold/assets/stylesheets/active_scaffold_layout.css src/active_scaffold/assets/stylesheets/active_scaffold.css
 	pyscss src/active_scaffold/assets/stylesheets/active_scaffold_colors.scss >> src/active_scaffold/assets/stylesheets/active_scaffold.css
+	cat src/active_scaffold/assets/stylesheets/active_scaffold_custom.css >> src/active_scaffold/assets/stylesheets/active_scaffold.css
 
 .PHONY : backup
 backup:

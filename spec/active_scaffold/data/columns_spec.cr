@@ -1,7 +1,8 @@
 require "./spec_helper"
 
 private def user_columns
-  ActiveScaffold::Config::Core(User).new.columns
+  default = ActiveScaffold::Config::Default(User).new
+  ActiveScaffold::Config::Core(User).new(default).columns
 end
 
 describe ActiveScaffold::Data::Columns do

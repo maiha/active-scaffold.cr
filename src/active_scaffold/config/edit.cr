@@ -1,9 +1,9 @@
 module ActiveScaffold
   module Config
-    class Show(T)
+    class Edit(T)
       include Base(T)
 
-      DEFAULT_ACTION_LINKS = %w( list edit )
+      DEFAULT_ACTION_LINKS = %w( list show )
 
       def setup!
         self.action_links.set(DEFAULT_ACTION_LINKS)

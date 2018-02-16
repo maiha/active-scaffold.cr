@@ -3,6 +3,10 @@ class User < Granite::ORM::Base
   field first_name : String
   field last_name : String
 
+  def name : String
+    names.join(" ")
+  end
+
   def names : Array(String)
     [first_name, last_name].compact
   end

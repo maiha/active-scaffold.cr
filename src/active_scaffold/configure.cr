@@ -4,7 +4,7 @@ module ActiveScaffold
   module Configure(T)
     macro included
       def self.active_scaffold_config : ActiveScaffold::Config::Core(T)
-        @@active_scaffold_config ||= ActiveScaffold::Config::Core(T).new
+        @@active_scaffold_config ||= ActiveScaffold::Config::Core(T).new(ActiveScaffold::Config::Default(T).new)
       end
 
       def self.active_scaffold(&block)

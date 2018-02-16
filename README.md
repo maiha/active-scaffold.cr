@@ -2,12 +2,12 @@
 
 ActiveScaffold for Amber on Crystal.
 - amber-0.6.5
-- granite-orm-0.8.4+1
+- granite-orm (maiha fork)
 - crystal-0.24.1
 
 ## Installation
 
-Add this to your application's `shard.yml`:
+Add this to your amber application's `shard.yml`:
 
 ```yaml
 dependencies:
@@ -21,7 +21,7 @@ dependencies:
 ```crystal
 require "active_scaffold"
 
-class UserController < ApplicationController
+class UsersController < ApplicationController
   include ActiveScaffold(User)
 
   active_scaffold do |config|
@@ -30,11 +30,63 @@ class UserController < ApplicationController
     config.action_links["show"].label = "View"
 
     config.show.label = "user(%s)"
-    config.show.action_links = ["top", "list"]
-    config.show.action_links["top"].label = "TOP"
-    config.show.action_links["list"].label = "back"
   end
 end
+```
+
+### debug
+
+- add `?debug` parameter to the url, or
+
+```crystal
+  active_scaffold do |config|
+    config.debug = true
+```
+
+## Install
+
+Currently, there are no generators. So please setup files manually as follows.
+
+### once for an application
+
+- `public/dist/active_scaffold.css` -> `../../lib/active_scaffold/src/active_scaffold/assets/stylesheets/active_scaffold.css`
+```shell
+(cd public/dist && ln -s ../../lib/active_scaffold/src/active_scaffold/assets/stylesheets/active_scaffold.css)
+```
+
+- `src/views/layouts/application.slang`
+  - add css to the end of `head` part
+  - add js to the end of `body` part
+```
+link rel="stylesheet" href="/dist/active_scaffold.css"
+script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+```
+
+### each controllers
+
+For example, we assume to setup for `UsersController` that manages `User` model.
+
+- `config/routes.cr`
+  - add REST routes to `:web`
+```crystal
+  routes :web do
+    resources "/users", UsersController
+```
+
+- `src/controllers/users_controller.cr`
+```crystal
+class UsersController < ApplicationController
+  include ActiveScaffold(User)
+  
+  active_scaffold do |config|
+    config.columns = ["first_name", "last_name"]
+  end
+end
+```
+
+- `src/views/users` -> `../../lib/active_scaffold/src/active_scaffold/views`
+```shell
+(cd src/views && ln -s ../../lib/active_scaffold/src/active_scaffold/views users)
 ```
 
 ## Development
@@ -42,6 +94,42 @@ end
 ```shell
 crystal spec -v
 ```
+
+## TODO
+
+- data
+  - [x] `ActiveScaffold::Data::Action(T)`
+  - [x] `ActiveScaffold::Data::Actions(T)`
+  - [x] `ActiveScaffold::Data::ActionLink(T)`
+  - [x] `ActiveScaffold::Data::ActionLinks(T)`
+  - [x] `ActiveScaffold::Data::Column(T)`
+  - [x] `ActiveScaffold::Data::Columns(T)`
+- config
+  - [x] `ActiveScaffold::Configure(T)`
+  - [x] `ActiveScaffold::Config::Base(T)`
+  - [x] `ActiveScaffold::Config::Core(T)`
+  - [ ] `ActiveScaffold::Config::Edit(T)`
+  - [x] `ActiveScaffold::Config::List(T)`
+  - [ ] `ActiveScaffold::Config::Search(T)`
+  - [x] `ActiveScaffold::Config::Show(T)`
+- actions
+  - [ ] `ActiveScaffold::Actions::Create(T)`
+  - [ ] `ActiveScaffold::Actions::Destroy(T)`
+  - [ ] `ActiveScaffold::Actions::Edit(T)`
+  - [x] `ActiveScaffold::Actions::List(T)`
+  - [ ] `ActiveScaffold::Actions::New(T)`
+  - [x] `ActiveScaffold::Actions::Show(T)`
+  - [x] `ActiveScaffold::Actions::Update(T)`
+- features
+  - [x] debug
+  - [ ] ajax
+  - [ ] search
+  - [ ] in place editor
+  - [ ] assosications
+  - [ ] nested
+  - [ ] generators
+  - [ ] auths and roles
+  - [ ] localizations
 
 ## Contributing
 
