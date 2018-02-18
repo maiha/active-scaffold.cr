@@ -3,7 +3,7 @@ module ActiveScaffold
     class Core(T)
       include Base(T)
 
-      CHILD_CONFIG_NAMES = %w( list show edit )
+      CHILD_CONFIG_NAMES = %w( list show edit update )
       
       # @list : List(T)?
       # def list
@@ -32,9 +32,11 @@ module ActiveScaffold
       
       def to_h
         {
-          "core" => self,
-          "list" => list,
-          "show" => show,
+          "core"   => self,
+          "list"   => list,
+          "show"   => show,
+          "edit"   => show,
+          "update" => update,
         }
       end
     end

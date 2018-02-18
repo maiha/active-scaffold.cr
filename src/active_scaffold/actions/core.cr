@@ -9,10 +9,6 @@ module ActiveScaffold::Actions
         raise "{{@type.name}}#create is not implemented yet."
       end
 
-      def update
-        raise "{{@type.name}}#update is not implemented yet."
-      end
-
       def destroy
         raise "{{@type.name}}#destroy is not implemented yet."
       end

@@ -18,6 +18,7 @@ module ActiveScaffold(T)
     include ActiveScaffold::Actions::List(T)
     include ActiveScaffold::Actions::Show(T)
     include ActiveScaffold::Actions::Edit(T)
+    include ActiveScaffold::Actions::Update(T)
     include ActiveScaffold::Helpers
   end
 end

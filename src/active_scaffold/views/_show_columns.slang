@@ -4,7 +4,7 @@ dl
     - if column.is_a? ActiveScaffold::Data::Column
       - css_class = "#{column.name}-view #{column.css_class}"
       dd class="#{css_class.strip}"
-        - value = show_column_value(config, column, record)
+        - value = show_record_value(config, column, record)
         - case value
         - when /\n/
           pre== value

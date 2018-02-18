@@ -1,15 +1,9 @@
 h1= label
 
-div.table-responsive
-  table.table.table-striped
-    - config.columns.each do |column|
-      tr
-        th
-          = column.label
-        td
-          = show_column_value(config, column, record)
-    tr
-      td colspan="2"
-        - config.action_links.each do |link|
-          span
-            == show_action_link(config, link, record)
+== render partial: "_active_scaffold_config.slang"
+
+- action = "/%s/%s" % [controller_name, record_id(config, record)]
+- method = record.persisted? ? :patch : :post
+== form(action: action, method: method) do
+  == csrf_tag
+  == render partial: "_edit.slang"

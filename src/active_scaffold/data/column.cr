@@ -5,11 +5,6 @@ module ActiveScaffold
     class Column(T)
       getter name
 
-      enum ColumnType
-        METHOD
-        VIRTUAL
-      end
-      
       property label : String
       property type : ColumnType = ColumnType::VIRTUAL
       property css_class : String = ""

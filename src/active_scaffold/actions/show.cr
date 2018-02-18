@@ -4,7 +4,7 @@ module ActiveScaffold::Actions
       def show
         id     = params["id"]? || raise "params[id] not found"
         config = active_scaffold_config.show
-        record = {{T}}.find(id) || raise "Couldn't find " + {{T.name.stringify}} + " (#{id})"
+        record = {{T}}.find(id)
         label  = config.label(record)
 
         if params["adapter"]?

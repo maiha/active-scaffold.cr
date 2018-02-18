@@ -1,7 +1,3 @@
-h1= label
-
-== render partial: "_active_scaffold_config.slang"
-
 div.table-responsive
   table.table.table-striped
     - config.columns.each do |column|
@@ -9,13 +5,10 @@ div.table-responsive
         th
           = column.label
         td
-          - value = show_record_value(config, column, record)
-          - case value
-          - when /\n/
-            pre== value
-          - else
-            = value
-            == "&nbsp;"
+          == edit_record_value(config, column, record)
+    tr
+      td colspan="2" style="text-align: center;"
+        == submit(config.action_links["update"].label, class: "btn btn-primary btn-xs")
     tr
       td colspan="2"
         - config.action_links.each do |link|

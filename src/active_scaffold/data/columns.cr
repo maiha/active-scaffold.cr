@@ -28,8 +28,12 @@ module ActiveScaffold
 
       def self.content_columns : Columns(T)
         columns = all
-        columns.set({{T::FIELDS.keys.map(&.stringify)}})
+        columns.set(self.content_keys)
         return columns
+      end
+
+      def self.content_keys : Array(String)
+        {{T::FIELDS.keys.map(&.stringify)}}
       end
     end
   end

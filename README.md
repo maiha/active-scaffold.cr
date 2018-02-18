@@ -1,7 +1,7 @@
 # active_scaffold.cr [![Build Status](https://travis-ci.org/maiha/active-scaffold.cr.svg?branch=master)](https://travis-ci.org/maiha/active-scaffold.cr)
 
 ActiveScaffold for Amber on Crystal.
-- amber-0.6.5
+- amber-0.6.7
 - granite-orm (maiha fork)
 - crystal-0.24.1
 
@@ -89,12 +89,6 @@ end
 (cd src/views && ln -s ../../lib/active_scaffold/src/active_scaffold/views users)
 ```
 
-## Development
-
-```shell
-crystal spec -v
-```
-
 ## TODO
 
 - data
@@ -115,13 +109,15 @@ crystal spec -v
 - actions
   - [ ] `ActiveScaffold::Actions::Create(T)`
   - [ ] `ActiveScaffold::Actions::Destroy(T)`
-  - [ ] `ActiveScaffold::Actions::Edit(T)`
+  - [x] `ActiveScaffold::Actions::Edit(T)`
   - [x] `ActiveScaffold::Actions::List(T)`
   - [ ] `ActiveScaffold::Actions::New(T)`
   - [x] `ActiveScaffold::Actions::Show(T)`
   - [x] `ActiveScaffold::Actions::Update(T)`
 - features
   - [x] debug
+  - [ ] pagination
+  - [ ] sorting
   - [ ] ajax
   - [ ] search
   - [ ] in place editor
@@ -130,6 +126,12 @@ crystal spec -v
   - [ ] generators
   - [ ] auths and roles
   - [ ] localizations
+
+## Development
+
+```shell
+crystal spec -v
+```
 
 ## Contributing
 
