@@ -13,7 +13,7 @@ Add this to your amber application's `shard.yml`:
 dependencies:
   active_scaffold:
     github: maiha/active_scaffold.cr
-    version: 0.2.0
+    version: 0.3.0
 ```
 
 ## Usage
