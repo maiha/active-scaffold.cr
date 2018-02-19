@@ -2,6 +2,10 @@ module ActiveScaffold::Actions
   module List(T)
     macro included
       def index
+        list
+      end
+
+      def list
         if params["id"]? && !params["id"].is_a?(Array) && xhr?
           do_row(params["id"])
         elsif action_name =~ /^(index|list)$/
@@ -11,11 +15,11 @@ module ActiveScaffold::Actions
           do_list
         end
       end
-      
+
       protected def do_list
         config  = active_scaffold_config.list
-        count   = {{T}}.count
-        records = {{T}}.all("limit #{config.per_page}")
+        paging  = build_paging(config)
+        records = find_records(paging)
 #        respond_to_action(:list)
         render("list.slang")
       end
@@ -25,6 +29,17 @@ module ActiveScaffold::Actions
         record  = {{T}}.find(id).not_nil!
         # render("index.slang")
         return "Not implemented yet"
+      end
+
+      protected def find_records(paging : Data::Paging)
+        {{T}}.all(paging.query)
+      end
+
+      protected def build_paging(config : Config::List(T))
+        paging = config.paging
+        paging.number = [(params["page"]? || 1).to_i, 1].max
+        paging.count  = paging.type.finite? ? {{T}}.count : -1
+        return paging
       end
     end
   end

@@ -1,0 +1,7 @@
+- if false # action_links = active_scaffold_config.action_links.collection
+  - # unless action_links.empty? -%>
+  - # <div class="actions">
+  - #   <%= display_action_links(action_links, nil, :skip_unauthorized => true) %>
+  - #   <%= loading_indicator_tag(:action => :table) %>
+  div class="actions"
+h2= config.label

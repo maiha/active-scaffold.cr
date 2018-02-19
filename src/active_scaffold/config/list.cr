@@ -5,13 +5,10 @@ module ActiveScaffold
 
       DEFAULT_ACTION_LINKS = %w( show edit )
 
-      var per_page : Int32 = 15
-      var sorting  : String
+      property paging : Data::Paging = Data::Paging.new
       
       def setup!
-        {% begin %}
-        self.sorting = {{T}}.primary_name
-        {% end %}
+        self.paging = Data::Paging.new(order: {{T}}.primary_name, limit: 15)
         self.action_links.set(DEFAULT_ACTION_LINKS)
       end
     end

@@ -58,6 +58,8 @@ $third_nested_bg: $nested_bg !default;
 $third_nested_border_color: $nested_border_color !default;
 
 $pagination_border_color: #ccc !default;
+$pagination_found_color: #b3bcc1 !default;
+$pagination_found_bold_color: #5c6469 !default;
 $msg_color: #333 !default;
 $msg_error_bg: #fbb !default;
 $msg_error_border_color: #f66 !default;
@@ -255,6 +257,14 @@ border-color: $third_nested_border_color;
 .active-scaffold-calculations td {
 background-color: $calculations_bg;
 border-color: $calculations_border_color;
+}
+
+.active-scaffold-found {
+color: $pagination_found_color;
+}
+
+.active-scaffold-found b {
+color: $pagination_found_bold_color;
 }
 
 .active-scaffold-footer .next {

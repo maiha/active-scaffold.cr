@@ -3,6 +3,10 @@ require "./config/*"
 module ActiveScaffold
   module Configure(T)
     macro included
+      {% if !(T < Granite::ORM::Base) %}
+        {% raise "works with Granite only, but got " + @type.name.stringify %}
+      {% end %}
+      
       def self.active_scaffold_config : ActiveScaffold::Config::Core(T)
         @@active_scaffold_config ||= ActiveScaffold::Config::Core(T).new(ActiveScaffold::Config::Default(T).new)
       end

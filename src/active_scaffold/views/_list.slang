@@ -12,4 +12,4 @@ table cellpadding="0" cellspacing="0"
     - # if columns.any? {|c| c.calculation?} -%>
     - # render :partial => 'list_calculations', :locals => {:columns => columns}
 
-- # render :partial => 'list_pagination'
+== render(partial: "_list_paging.slang")

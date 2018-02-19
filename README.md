@@ -25,9 +25,16 @@ class UsersController < ApplicationController
   include ActiveScaffold(User)
 
   active_scaffold do |config|
+    # config.id = "code" # primary key (default: "id")
+
     config.columns = ["first_name", "last_name"]
     config.actions = ["list", "show"]
     config.action_links["show"].label = "View"
+
+    config.list.paging.order  = "id DESC"
+    config.list.paging.limit  = 15
+    config.list.paging.window = 5
+    # config.list.paging.count = false # disable `SELECT COUNT`
 
     config.show.label = "user(%s)"
   end
@@ -42,6 +49,16 @@ end
   active_scaffold do |config|
     config.debug = true
 ```
+
+## API
+- **config** : [ActiveScaffold::Config::Core](./src/active_scaffold/config/core.cr)
+- **config.columns** : [ActiveScaffold::Data::Column](./src/active_scaffold/data/column.cr)
+- **config.action_links** : [ActiveScaffold::Data::ActionLink](./src/active_scaffold/data/action_link.cr)
+- **config.list** : [ActiveScaffold::Config::List](./src/active_scaffold/config/list.cr)
+- **config.list.paging** : [ActiveScaffold::Data::Paging](./src/active_scaffold/data/paging.cr)
+- **config.show** : [ActiveScaffold::Config::Show](./src/active_scaffold/config/show.cr)
+- **config.edit** : [ActiveScaffold::Config::Edit](./src/active_scaffold/config/edit.cr)
+- **config.update** : [ActiveScaffold::Config::Update](./src/active_scaffold/config/update.cr)
 
 ## Install
 
@@ -102,7 +119,7 @@ end
   - [x] `ActiveScaffold::Configure(T)`
   - [x] `ActiveScaffold::Config::Base(T)`
   - [x] `ActiveScaffold::Config::Core(T)`
-  - [ ] `ActiveScaffold::Config::Edit(T)`
+  - [x] `ActiveScaffold::Config::Edit(T)`
   - [x] `ActiveScaffold::Config::List(T)`
   - [ ] `ActiveScaffold::Config::Search(T)`
   - [x] `ActiveScaffold::Config::Show(T)`
@@ -116,8 +133,8 @@ end
   - [x] `ActiveScaffold::Actions::Update(T)`
 - features
   - [x] debug
-  - [ ] pagination
-  - [ ] sorting
+  - [x] pagination
+  - [x] sorting
   - [ ] ajax
   - [ ] search
   - [ ] in place editor

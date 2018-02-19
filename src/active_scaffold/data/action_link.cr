@@ -15,7 +15,7 @@ module ActiveScaffold
       property css_class : String
 
       def initialize(@name : String, label : String? = nil, @url = "/", @css_class = "")
-        @label = label || @name
+        @label = label || @name.capitalize
       end
 
       def to_s(io : IO)
