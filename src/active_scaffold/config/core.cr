@@ -35,7 +35,7 @@ module ActiveScaffold
           "core"   => self,
           "list"   => list,
           "show"   => show,
-          "edit"   => show,
+          "edit"   => edit,
           "update" => update,
         }
       end

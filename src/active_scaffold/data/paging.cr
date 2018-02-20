@@ -89,6 +89,19 @@ module ActiveScaffold
         raise "[BUG] pages: #{range.size} exceeds (#{window})" if range.size > window
         range.map{|i| page(i)}
       end
+
+      def to_s(io : IO)
+        io << "Paging("
+        case type
+        when .disabled?
+          io << "disabled"
+        when .finite?
+          io << "page:#{number}, limit:#{limit}, order:'#{order}', count:#{count}"
+        when .infinite?
+          io << "page:#{number}, limit:#{limit}, order:'#{order}'"
+        end
+        io << ")"
+      end
     end
   end
 end
