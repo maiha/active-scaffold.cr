@@ -1,11 +1,11 @@
 module ActiveScaffold::Helpers
   module ShowHelper
     def show_record_value(config : Config::Base, column : Data::Column, record)
-      if column.type.method?
+      if column.type.virtual?
+        "(virtual column not supported yet)"
+      else
         name = column.name
         Pretty.method(record).call?(name) || "(no method: #{name})"
-      else
-        "(virtual column not supported yet)"
       end
     end
 

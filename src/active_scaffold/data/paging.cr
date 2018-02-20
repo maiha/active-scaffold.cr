@@ -1,11 +1,11 @@
-require "./paging_type"
-
 module ActiveScaffold
   module Data
     class Paging
       def_equals_and_hash type, order, limit, count, index, window
-      
-      property type   : PagingType
+
+      enum Type; FINITE; INFINITE; DISABLED; end
+                              
+      property type   : Type
       property order  : String
       property limit  : Int32
       property count  : Int32
@@ -13,7 +13,7 @@ module ActiveScaffold
       property window : Int32
 
       def initialize(type = nil, order = nil, limit = nil, count = nil, index = nil, window = nil)
-        @type   = type   || PagingType::FINITE
+        @type   = type   || Type::FINITE
         @order  = order  || "id"
         @limit  = limit  || 15
         @count  = count  || 0
@@ -36,9 +36,9 @@ module ActiveScaffold
 
       def count=(v : Bool)
         if v
-          @type = PagingType::FINITE
+          @type = Type::FINITE
         else
-          @type = PagingType::INFINITE
+          @type = Type::INFINITE
         end
       end
 

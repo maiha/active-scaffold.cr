@@ -5,11 +5,10 @@ module ActiveScaffold::Helpers
     end
 
     def record_value?(config : Config::Base, column : Data::Column, record)
-      if column.type.method?
-        name = column.name
-        Pretty.method(record).call?(name)
-      else
+      if column.type.virtual?
         nil
+      else
+        Pretty.method(record).call?(column.name)
       end
     end
   end
