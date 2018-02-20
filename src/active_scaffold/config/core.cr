@@ -25,7 +25,7 @@ module ActiveScaffold
         # NOTE: inherits only modified fields
         # dup.list = list if @list
         {% for m in CHILD_CONFIG_NAMES %}
-          dup.{{m.id}} = {{m.id}} if @{{m.id}}
+          dup.{{m.id}} = {{m.id}}.dup if @{{m.id}}
         {% end %}
         dup
       end

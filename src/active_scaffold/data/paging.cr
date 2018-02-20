@@ -21,7 +21,7 @@ module ActiveScaffold
         @window = window || 5
       end
 
-      def query : String
+      def sql : String
         limit  = [@limit, 0].max
         "ORDER BY %s LIMIT %d OFFSET %d" % [@order, limit, offset]
       end

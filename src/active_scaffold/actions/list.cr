@@ -32,11 +32,15 @@ module ActiveScaffold::Actions
       end
 
       protected def find_records(paging : Data::Paging)
-        {{T}}.all(paging.query)
+        {{T}}.all(paging.sql)
       end
 
       protected def build_paging(config : Config::List(T))
         paging = config.paging
+        if order = params["order"]?
+          asc = (params["asc"]?.to_s == "false") ? "ASC" : "DESC"
+          paging.order = "%s %s" % [order, asc] 
+        end
         paging.number = [(params["page"]? || 1).to_i, 1].max
         paging.count  = paging.type.finite? ? {{T}}.count : -1
         return paging
