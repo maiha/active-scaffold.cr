@@ -20,4 +20,4 @@ div.table-responsive
       td colspan="2"
         - config.action_links.each do |link|
           span
-            == show_action_link(config, link, record)
+            == show_action_link(config, link, record, class: "btn btn-primary btn-xs")

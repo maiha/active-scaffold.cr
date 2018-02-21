@@ -9,10 +9,12 @@ module ActiveScaffold::Helpers
       end
     end
 
-    def show_action_link(config : Config::Base , link : Data::ActionLink, record)
+    def show_action_link(config : Config::Base , link : Data::ActionLink, record, **args)
       id_builder = ->{ Pretty.method(record).call(config.id) }
       url = resolve_url(link.url, id_builder)
-      link_to(link.label.to_s, url, class: link.css_class)
+      css = args[:class]? || ""
+      css = link.css_class if ! link.css_class.empty?
+      link_to(link.label.to_s, url, class: css)
     end
 
     def show_list_column(config : Config::Base, column : Data::Column, record)
