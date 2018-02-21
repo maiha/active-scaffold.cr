@@ -69,7 +69,7 @@ end
 
 ## Install
 
-Currently, there are no generators. So please setup files manually as follows.
+Currently, there are no full generators. So please setup files manually as follows.
 
 ### once for an application
 
@@ -86,32 +86,33 @@ link rel="stylesheet" href="/dist/active_scaffold.css"
 script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
 ```
 
+Put into `shard.yml`.
+
+```
+targets:
+  active_scaffold:
+    main: lib/active_scaffold/bin/gen.cr
+```
+
+Then, build it.
+```shell
+shards build
+```
+
 ### each controllers
 
-For example, we assume to setup for `UsersController` that manages `User` model.
+For example, please run following command for `UsersController` and `User` model.
+
+```shell
+./bin/active_scaffold users
+```
+
+This writes following files if missing.
 
 - `config/routes.cr`
-  - add REST routes to `:web`
-```crystal
-  routes :web do
-    resources "/users", UsersController
-```
-
+- `src/models/user.cr`
 - `src/controllers/users_controller.cr`
-```crystal
-class UsersController < ApplicationController
-  include ActiveScaffold(User)
-  
-  active_scaffold do |config|
-    config.columns = ["first_name", "last_name"]
-  end
-end
-```
-
 - `src/views/users` -> `../../lib/active_scaffold/src/active_scaffold/views`
-```shell
-(cd src/views && ln -s ../../lib/active_scaffold/src/active_scaffold/views users)
-```
 
 ## TODO
 
