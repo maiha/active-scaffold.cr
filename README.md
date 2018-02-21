@@ -13,11 +13,12 @@ Add this to your amber application's `shard.yml`:
 dependencies:
   active_scaffold:
     github: maiha/active_scaffold.cr
-    version: 0.3.3
+    version: 0.3.4
 
   granite_orm:
     #github: amberframework/granite-orm
     github: maiha/granite-orm
+    branch: master
 ```
 
 ## Usage
@@ -56,8 +57,10 @@ end
 
 ## API
 - **config** : [ActiveScaffold::Config::Core](./src/active_scaffold/config/core.cr)
-- **config.columns** : [ActiveScaffold::Data::Column](./src/active_scaffold/data/column.cr)
-- **config.action_links** : [ActiveScaffold::Data::ActionLink](./src/active_scaffold/data/action_link.cr)
+- **config.columns** : [ActiveScaffold::Data::Columns](./src/active_scaffold/data/columns.cr)
+- **config.column** : [ActiveScaffold::Data::Column](./src/active_scaffold/data/column.cr)
+- **config.action_links** : [ActiveScaffold::Data::ActionLinks](./src/active_scaffold/data/action_links.cr)
+- **config.action_link** : [ActiveScaffold::Data::ActionLink](./src/active_scaffold/data/action_link.cr)
 - **config.list** : [ActiveScaffold::Config::List](./src/active_scaffold/config/list.cr)
 - **config.list.paging** : [ActiveScaffold::Data::Paging](./src/active_scaffold/data/paging.cr)
 - **config.show** : [ActiveScaffold::Config::Show](./src/active_scaffold/config/show.cr)
