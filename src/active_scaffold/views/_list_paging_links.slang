@@ -1,6 +1,6 @@
-- if paging.enabled?
+- pages = paging.pages
+- if paging.enabled? && pages.any?
   - first = paging.first
-  - pages = paging.pages
 
   - if paging.number > 1
     == link_to as_("First"), paging_url(first), class: "as_paginate previous"
