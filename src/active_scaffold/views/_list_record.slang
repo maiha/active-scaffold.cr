@@ -3,7 +3,7 @@
 - # url_options = params_for(:action => :list, :id => record.id)
 - # action_links ||= active_scaffold_config.action_links.member
 
-- id = element_row_id({"action" => "list", "id" => record.id})
+- id = element_row_id({"action" => "list", "id" => record_id(config, record)})
 - # url_for(params_for(:action => :row, :id => record.id, :_method => :get))
 - data_refresh = ""
 
