@@ -2,6 +2,7 @@ module ActiveScaffold
   module Data
     class Paging
       def_equals_and_hash type, order, limit, count, index, window
+      def_clone
 
       enum Type; FINITE; INFINITE; DISABLED; end
                               
@@ -51,7 +52,7 @@ module ActiveScaffold
       end
 
       def page(page_no : Int32) : Paging
-        dup.tap{|p| p.number = page_no}
+        clone.tap{|p| p.number = page_no}
       end
 
       def first : Paging

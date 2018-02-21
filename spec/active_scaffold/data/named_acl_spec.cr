@@ -5,6 +5,8 @@ private record NamedValue, name : String, value : Int32? = 0
 private class NamedFilter
   include ActiveScaffold::Data::NamedAcl(NamedValue)
 
+  def_clone
+
   def initialize(@hash : Hash(String, NamedValue))
   end
 end
@@ -132,12 +134,12 @@ describe ActiveScaffold::Data::Columns do
     end
   end
   
-  describe "#dup" do
+  describe "#clone" do
     it "works" do
       filter1 = new_filter
       filter1.set(["1", "2"])
 
-      filter2 = filter1.dup
+      filter2 = filter1.clone
       filter2.names.should eq ["1", "2"]
       
       filter1.add("3")

@@ -4,16 +4,11 @@ module ActiveScaffold
       include Enumerable(T)
       delegate each, to: current
 
+      def_clone
+
       property whites = Set(String).new
       property blacks = Set(String).new
 
-      def dup
-        dup = self.class.new(@hash.dup)
-        dup.whites = whites.dup
-        dup.blacks = blacks.dup
-        dup
-      end
-      
       def clear
         self.whites = Set(String).new
         self.blacks = Set(String).new
@@ -60,7 +55,7 @@ module ActiveScaffold
       def current : Array(T)
         if whites.any?
           # respect order
-          names = whites.dup
+          names = whites.clone
         else
           names = @hash.keys
         end

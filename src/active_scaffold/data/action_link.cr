@@ -1,6 +1,8 @@
 module ActiveScaffold
   module Data
     class ActionLink(T)
+      def_clone
+
       getter name
 
       enum MethodType

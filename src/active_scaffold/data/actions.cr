@@ -6,6 +6,8 @@ module ActiveScaffold
     class Actions(T)
       include NamedAcl(Action(T))
 
+      def_clone
+
       def initialize(@hash : Hash(String, Action(T)))
       end
     end

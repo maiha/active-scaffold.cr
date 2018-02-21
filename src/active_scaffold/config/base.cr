@@ -18,7 +18,7 @@ module ActiveScaffold
         setup!
       end
 
-      def dup
+      def clone
         self.class.new(self)
       end
 
@@ -32,7 +32,7 @@ module ActiveScaffold
         end
 
         private def build_{{m.id}}
-          @base.{{m.id}}.dup
+          @base.{{m.id}}.clone
         end
       {% end %}
 

@@ -6,6 +6,8 @@ module ActiveScaffold
     class ActionLinks(T)
       include NamedAcl(ActionLink(T))
 
+      def_clone
+
       def initialize(@hash : Hash(String, ActionLink(T)))
       end
     end

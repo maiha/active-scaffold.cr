@@ -11,6 +11,12 @@ module ActiveScaffold
         self.paging = Data::Paging.new(order: {{T}}.primary_name, limit: 15)
         self.action_links.set(DEFAULT_ACTION_LINKS)
       end
+
+      def clone
+        clone = super()
+        clone.paging = paging.clone
+        clone
+      end
     end
   end
 end

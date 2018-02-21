@@ -14,6 +14,10 @@ dependencies:
   active_scaffold:
     github: maiha/active_scaffold.cr
     version: 0.3.3
+
+  granite_orm:
+    #github: amberframework/granite-orm
+    github: maiha/granite-orm
 ```
 
 ## Usage

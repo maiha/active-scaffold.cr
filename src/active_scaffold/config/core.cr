@@ -20,14 +20,14 @@ module ActiveScaffold
         end
       {% end %}
 
-      def dup
-        dup = super()
+      def clone
+        clone = super()
         # NOTE: inherits only modified fields
-        # dup.list = list if @list
+        # clone.list = list if @list
         {% for m in CHILD_CONFIG_NAMES %}
-          dup.{{m.id}} = {{m.id}}.dup if @{{m.id}}
+          clone.{{m.id}} = {{m.id}}.clone if @{{m.id}}
         {% end %}
-        dup
+        clone
       end
       
       def to_h

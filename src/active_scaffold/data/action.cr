@@ -1,6 +1,8 @@
 module ActiveScaffold
   module Data
     class Action(T)
+      def_clone
+
       getter name
 
       def initialize(@name : String)

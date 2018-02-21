@@ -6,6 +6,10 @@ module ActiveScaffold
     class Columns(T)
       include NamedAcl(Column(T))
 
+      def_clone
+
+      property hash
+      
       def initialize(@hash : Hash(String, Column(T)))
       end
 
