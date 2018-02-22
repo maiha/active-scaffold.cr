@@ -6,17 +6,34 @@ module ActiveScaffold
 
       def_clone
 
-      property whites = Set(String).new
-      property blacks = Set(String).new
+      property positive : Set(String) = build_positive
+      property negative : Set(String) = build_negative
+
+      macro positive(value)
+        def build_positive
+          v = {{value}}
+          v.is_a?(Array) ? Set.new(v) : v
+        end
+      end
+
+      macro negative(value)
+        def build_negative
+          v = {{value}}
+          v.is_a?(Array) ? Set.new(v) : v
+        end
+      end
+
+      positive Set(String).new
+      negative Set(String).new
 
       def clear
-        self.whites = Set(String).new
-        self.blacks = Set(String).new
+        self.positive = Set(String).new
+        self.negative = Set(String).new
       end
 
       def set(names : Enumerable(String))
-        self.whites = Set(String).new
-        whites.concat(names)
+        self.positive = Set(String).new
+        positive.concat(names)
       end
 
       def set(name : String)
@@ -24,7 +41,7 @@ module ActiveScaffold
       end
 
       def add(names : Array(String))
-        whites.concat(names)
+        positive.concat(names)
       end
 
       def add(name : String)
@@ -32,8 +49,8 @@ module ActiveScaffold
       end
 
       def del(names : Array(String))
-        self.whites = Set(String).new(@hash.keys) if whites.empty?
-        whites.subtract(names)
+        self.positive = Set(String).new(@hash.keys) if positive.empty?
+        positive.subtract(names)
       end
 
       def del(name : String)
@@ -53,14 +70,14 @@ module ActiveScaffold
       end
       
       def current : Array(T)
-        if whites.any?
+        if positive.any?
           # respect order
-          names = whites.clone
+          names = positive.clone
         else
           names = @hash.keys
         end
 
-        return (names - blacks.to_a).map{|name|
+        return (names - negative.to_a).map{|name|
           self[name]
         }
       end
@@ -75,10 +92,10 @@ module ActiveScaffold
 
       def inspect(io : IO)
         to_s(io)
-        if whites.any?
-          io << "(whites: %s)" % whites.to_a.inspect
-        elsif blacks.any?
-          io << "(blacks: %s)" % blacks.to_a.inspect
+        if positive.any?
+          io << "(positive: %s)" % positive.to_a.inspect
+        elsif negative.any?
+          io << "(negative: %s)" % negative.to_a.inspect
         end
       end
     end

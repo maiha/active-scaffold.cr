@@ -20,7 +20,8 @@ describe ActiveScaffold::Config::Core do
   describe "#columns" do
     it "returns content columns in default" do
       config = UserController.active_scaffold_config.clone
-      config.columns.names.should eq(["first_name", "last_name"])
+      config.columns.names.includes?("first_name").should be_true
+      config.columns.names.includes?("last_name").should be_true
     end
   end
 

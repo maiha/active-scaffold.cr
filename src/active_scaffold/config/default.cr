@@ -36,8 +36,8 @@ module ActiveScaffold
         hash["show"].show!
         hash["edit"].edit!
         links = Data::ActionLinks(T).new(hash)
-        if links.whites.empty? && actions.whites.any?
-          links.set(actions.whites)
+        if links.positive.empty? && actions.positive.any?
+          links.set(actions.positive)
         end
         return links
       end

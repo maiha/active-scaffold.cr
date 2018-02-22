@@ -6,8 +6,9 @@ private def user_columns
 end
 
 describe ActiveScaffold::Data::Columns do
-  it "has content columns in default" do
-    columns = user_columns
-    columns.names.should eq ["first_name", "last_name"]
+  it "contains timestamp in default" do
+    columns = ActiveScaffold::Data::Columns(User).content_columns
+    columns.names.includes?("created_at").should be_true
+    columns.names.includes?("updated_at").should be_true
   end
 end
