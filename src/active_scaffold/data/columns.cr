@@ -37,7 +37,11 @@ module ActiveScaffold
       end
 
       def self.content_keys : Array(String)
-        {{T::FIELDS.keys.map(&.stringify)}}
+        {% if T::FIELDS.size > 0 %}
+          {{T::FIELDS.keys.map(&.stringify)}}
+        {% else %}
+          Array(String).new
+        {% end %}
       end
     end
   end
