@@ -7,6 +7,8 @@ module ActiveScaffold::Helpers
     def record_value?(config : Config::Base, column : Data::Column, record)
       if column.type.virtual?
         nil
+      elsif column.type.field?
+        Pretty.method(record).call?("#{column.name}?")
       else
         Pretty.method(record).call?(column.name)
       end
