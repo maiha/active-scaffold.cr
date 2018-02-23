@@ -1,11 +1,10 @@
 == render(partial: "_record_errors.slang")
 
 h1= label
-
 == render partial: "_active_scaffold_config.slang"
 
 - # TODO: use url in ActionLink
-- action = "/%s/%s" % [controller_name, record_id(config, record)]
+- action = "/%s" % [controller_name]
 - method = record.persisted? ? :patch : :post
 == form(action: action, method: method) do
   == csrf_tag
@@ -15,7 +14,7 @@ h1= label
     table.table
       tr
         td style="text-align: center;"
-          == submit(config.action_links["update"].label, class: "btn btn-success btn-xs")
+          == submit(config.action_links["create"].label, class: "btn btn-success btn-xs")
       tr
         td
           - config.action_links.each do |link|

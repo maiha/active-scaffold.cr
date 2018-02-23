@@ -3,7 +3,7 @@ module ActiveScaffold
     class Core(T)
       include Base(T)
 
-      CHILD_CONFIG_NAMES = %w( list show edit update )
+      CHILD_CONFIG_NAMES = %w( new create list show edit update )
       
       # @list : List(T)?
       # def list
@@ -31,13 +31,12 @@ module ActiveScaffold
       end
       
       def to_h
-        {
-          "core"   => self,
-          "list"   => list,
-          "show"   => show,
-          "edit"   => edit,
-          "update" => update,
-        }
+        hash = Hash(String, Base(T)).new
+        hash["core"] = self
+        {% for m in CHILD_CONFIG_NAMES %}
+          hash[{{m}}] = {{m.id}}
+        {% end %}
+        return hash
       end
     end
   end

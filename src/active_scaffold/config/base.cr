@@ -60,6 +60,12 @@ module ActiveScaffold
         action_links.set(names)
       end
 
+      ######################################################################
+      ### Helpers
+      def content_columns : Array(Data::Column(T))
+        columns.content(self)
+      end
+
       private def setup!
       end
     end

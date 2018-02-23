@@ -12,6 +12,10 @@ module ActiveScaffold::Helpers
       end
     end
 
+    def resolve_url(config, link, record) : String
+      resolve_url(link.url, ->{ record_id(config, record) })
+    end
+
     def resolve_url(url : String, id_builder = nil) : String
       id_builder ||= ->{ raise "URL ERROR: cannot resolve ':id' (#{url})"}
       url.gsub(/:([a-z]+)\b/) {

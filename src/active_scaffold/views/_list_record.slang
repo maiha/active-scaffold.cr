@@ -1,4 +1,3 @@
-- # tr_class = cycle("", "even-record") + ' ' + list_row_class(record)
 - tr_class = even ? "even-record" : ""
 - # url_options = params_for(:action => :list, :id => record.id)
 - # action_links ||= active_scaffold_config.action_links.member

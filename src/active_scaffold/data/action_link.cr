@@ -5,14 +5,12 @@ module ActiveScaffold
 
       getter name
 
-      enum MethodType
-        GET
-        POST
-        PUT
-      end
+      enum MethodType; GET; POST; PUT; end
+      enum Type      ; COLLECTION; MEMBER; end
       
       property url    : String
       property label  : String
+      property type   : Type = Type::COLLECTION
       property method : MethodType = MethodType::GET
       property css_class : String
 
@@ -32,14 +30,22 @@ module ActiveScaffold
       ### state change
       def list!
         @url = "/:controller"
+        @type = Type::COLLECTION
       end
 
       def show!
         @url = "/:controller/:id"
+        @type = Type::MEMBER
       end
 
       def edit!
         @url = "/:controller/:id/edit"
+        @type = Type::MEMBER
+      end
+
+      def new!
+        @url = "/:controller/new"
+        @type = Type::COLLECTION
       end
     end
   end

@@ -15,6 +15,8 @@ module ActiveScaffold(T)
   macro included
     include ActiveScaffold::Configure(T)
     include ActiveScaffold::Actions::Core(T)
+    include ActiveScaffold::Actions::New(T)
+    include ActiveScaffold::Actions::Create(T)
     include ActiveScaffold::Actions::List(T)
     include ActiveScaffold::Actions::Show(T)
     include ActiveScaffold::Actions::Edit(T)

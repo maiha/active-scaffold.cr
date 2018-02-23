@@ -31,10 +31,11 @@ module ActiveScaffold
         hash = Hash(String, Data::ActionLink(T)).new { |h, k|
           h[k] = Data::ActionLink(T).new(k)
         }
-        # %w( list create show update delete search nested subform )
+        # %w( list new show update delete search nested subform )
         hash["list"].list!
         hash["show"].show!
         hash["edit"].edit!
+        hash["new"].new!
         links = Data::ActionLinks(T).new(hash)
         if links.positive.empty? && actions.positive.any?
           links.set(actions.positive)

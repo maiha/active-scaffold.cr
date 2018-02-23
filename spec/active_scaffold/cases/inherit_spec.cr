@@ -21,7 +21,7 @@ describe "cases for inherit" do
   end
 
   describe "#clone" do
-    it "inherits paging from original instance" do
+    it "inherits paging" do
       config = UserController.active_scaffold_config.clone
       config.list.paging.order = "foo"
       config.list.paging.limit = 7
@@ -29,7 +29,7 @@ describe "cases for inherit" do
       config.clone.list.paging.should eq config.list.paging
     end
 
-    it "inherits columns from original instance" do
+    it "inherits columns" do
       config = UserController.active_scaffold_config.clone
       config.columns = ["foo"]
       config.show.columns.add "bar"
@@ -37,6 +37,14 @@ describe "cases for inherit" do
       clone = config.clone
       clone.columns.names.should eq ["foo"]
       clone.show.columns.names.should eq ["foo", "bar"]
+    end
+
+    it "inhertis action_links" do
+      config = UserController.active_scaffold_config.clone
+      config.list.action_links = ["new"]
+
+      clone = config.clone
+      clone.list.action_links.names.should eq ["new"]
     end
   end
 end

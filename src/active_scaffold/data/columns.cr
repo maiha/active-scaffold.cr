@@ -13,6 +13,10 @@ module ActiveScaffold
       def initialize(@hash : Hash(String, Column(T)))
       end
 
+      def content(config) : Array(Column(T))
+        self.reject(&.name.== config.id)
+      end
+
       # collect all public methods except
       # - argments exist
       # - bang and equal methods

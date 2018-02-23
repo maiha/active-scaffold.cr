@@ -1,16 +1,15 @@
 module ActiveScaffold::Actions
-  module Update(T)
+  module Create(T)
     macro included
-      def update
-        config = active_scaffold_config.update
-        id     = params["id"]
-        record = {{T}}.find(id)
+      def create
+        config = active_scaffold_config.create
+        record = {{T}}.new
         label  = config.label(record)
 
-        do_update(config, id, record)
+        do_create(config, record)
       end
       
-      protected def do_update(config, id, record)
+      protected def do_create(config, record)
         # copy `record[foo]` to `foo`
         params.each do |key, val|
           params[$1] = val if key =~ /^record\[(.*?)\]$/
@@ -23,13 +22,13 @@ module ActiveScaffold::Actions
         end
         record.set_attributes(validator.validate!)
 
-        label = "%s(%s)" % [{{T.name.stringify}}, id]
+        label = "%s" % [{{T.name.stringify}}]
         if record.valid? && record.save
-          flash["success"] = as_("Updated %s successfully.") % [label]
+          flash["success"] = as_("Created %s successfully.") % [label]
           redirect_to "/%s" % controller_name
         else
-          flash["danger"] = as_("Could not update %s.") % [label]
-          edit(record)
+          flash["danger"] = as_("Could not create %s.") % [label]
+          new(record)
         end
       end
     end

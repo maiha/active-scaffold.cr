@@ -20,6 +20,13 @@ module ActiveScaffold::Helpers
       link_to(link.label.to_s, url, class: css)
     end
 
+    def show_action_link(config : Config::Base , link : Data::ActionLink, **args)
+      url = resolve_url(link.url)
+      css = args[:class]? || ""
+      css = link.css_class if ! link.css_class.empty?
+      link_to(link.label.to_s, url, class: css)
+    end
+
     def show_list_column(config : Config::Base, column : Data::Column, record)
       text = show_record_value(config, column, record)
       Pretty.truncate(text, size: column.truncate)

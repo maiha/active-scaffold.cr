@@ -15,6 +15,7 @@ module ActiveScaffold
       def clone
         clone = super()
         clone.paging = paging.clone
+        clone.action_links = action_links.clone
         clone
       end
     end

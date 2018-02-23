@@ -278,7 +278,6 @@ border-color: $pagination_border_color;
 /* Messages
    ========================= */
 
-
 .active-scaffold .empty-message, .active-scaffold .filtered-message {
 background-color: $msg_filtered_bg;
 color: $msg_filtered_color;
@@ -414,4 +413,12 @@ color: $subform_footer_color;
 
 .as_touch th a, .as_touch th a:visited {
 color: $column_header_link_color;
+}
+
+/* Added by active-scaffold.cr
+   ========================== */
+
+.active-scaffold-error th, .active-scaffold-error td {
+  border-color: $msg_error_border_color;
+  background-color: $msg_error_bg;
 }
