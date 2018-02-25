@@ -13,7 +13,7 @@ Add this to your amber application's `shard.yml`:
 dependencies:
   active_scaffold:
     github: maiha/active_scaffold.cr
-    version: 0.3.5
+    version: 0.3.6
 
   granite_orm:
     #github: amberframework/granite-orm
