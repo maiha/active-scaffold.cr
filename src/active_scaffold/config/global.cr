@@ -30,10 +30,11 @@ module ActiveScaffold
           h[k] = Data::ActionLink(T).new(k)
         }
         # %w( list new show update delete search nested subform )
-        hash["list"].list!
-        hash["show"].show!
         hash["edit"].edit!
+        hash["delete"].delete!
+        hash["list"].list!
         hash["new"].new!
+        hash["show"].show!
         links = Data::ActionLinks(T).new(hash)
         if links.positive.empty? && actions.positive.any?
           links.set(actions.positive)

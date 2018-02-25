@@ -7,12 +7,13 @@ module ActiveScaffold
 
       enum Type; FIELD; METHOD; VIRTUAL; end
 
-      property label     : String?
-      property type      : Type = Type::VIRTUAL
-      property css_class : String = ""
-      property truncate  : Int32 = 50
+      property label    : String?
+      property type     : Type = Type::VIRTUAL
+      property truncate : Int32 = 50
+      property css      : String
+      property attrs    : Hash(String, String) = Hash(String, String).new
 
-      def initialize(@name : String, @label = nil, method = false)
+      def initialize(@name : String, @label = nil, method = false, @css = "")
         @type  = Type::METHOD if method
         @type  = Type::FIELD  if T.new.to_h.keys.includes?(@name)
       end

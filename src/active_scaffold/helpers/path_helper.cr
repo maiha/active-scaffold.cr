@@ -18,11 +18,12 @@ module ActiveScaffold::Helpers
 
     def resolve_url(url : String, id_builder = nil) : String
       id_builder ||= ->{ raise "URL ERROR: cannot resolve ':id' (#{url})"}
-      url.gsub(/:([a-z]+)\b/) {
+      url.gsub(/:([a-z_]+)\b/) {
         case $1.to_s
         when "controller" ; controller_name
         when "action"     ; action_name
         when "id"         ; id_builder.call
+        when "csrf_token" ; csrf_token
         else
           raise "url contains unknown parameter: ':#{$1}' (#{url})"
         end

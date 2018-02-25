@@ -16,15 +16,17 @@ module ActiveScaffold::Helpers
       id_builder = ->{ Pretty.method(record).call(config.id) }
       url = resolve_url(link.url, id_builder)
       css = args[:class]? || ""
-      css = link.css_class if ! link.css_class.empty?
-      link_to(link.label.to_s, url, class: css)
+      css = link.css if ! link.css.empty?
+      onclick = link.onclick
+      link_to(link.label.to_s, url, class: css, onclick: onclick)
     end
 
     def show_action_link(config : Config::Base , link : Data::ActionLink, **args)
       url = resolve_url(link.url)
       css = args[:class]? || ""
-      css = link.css_class if ! link.css_class.empty?
-      link_to(link.label.to_s, url, class: css)
+      css = link.css if ! link.css.empty?
+      onclick = link.onclick
+      link_to(link.label.to_s, url, class: css, onclick: onclick)
     end
 
     def show_list_column(config : Config::Base, column : Data::Column, record)

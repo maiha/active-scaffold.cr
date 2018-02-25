@@ -5,7 +5,7 @@ module ActiveScaffold::Helpers
       name  = "record[%s]" % column.name
       value = record_value?(config, column, record).to_s
       eid   = "record_%s_%s" % [column.name, URI.escape(id.to_s)]
-      css   = column.css_class
+      css   = column.css
 
       case value
       when /\n/

@@ -46,7 +46,18 @@ class UsersController < ApplicationController
 end
 ```
 
-### debug
+### Global settings
+
+You can put global settings in `ActiveScaffold::Default` that sets default values to all controllers.
+
+```crystal
+ActiveScaffold::Default::List::PAGING = {limit: 5}
+```
+
+All configurable parameters are in `ActiveScaffold::Default`.
+See https://github.com/maiha/active-scaffold.cr/wiki/API:-Global-settings
+
+### Debug
 
 - add `?debug` parameter to the url, or
 
@@ -114,18 +125,6 @@ This writes following files if missing.
 - `src/controllers/users_controller.cr`
 - `src/views/users` -> `../../lib/active_scaffold/src/active_scaffold/views`
 
-## global settings
-
-You can put global settings in `ActiveScaffold::Default` that sets default values to all controllers.
-
-```crystal
-ActiveScaffold::Default::List::PAGING = {limit: 5}
-```
-
-All configurable parameters are in `ActiveScaffold::Default`.
-See https://github.com/maiha/active-scaffold.cr/wiki/API:-Global-settings
-
-
 ## TODO
 
 - data
@@ -145,7 +144,7 @@ See https://github.com/maiha/active-scaffold.cr/wiki/API:-Global-settings
   - [x] `ActiveScaffold::Config::Show(T)`
 - actions
   - [x] `ActiveScaffold::Actions::Create(T)`
-  - [ ] `ActiveScaffold::Actions::Destroy(T)`
+  - [x] `ActiveScaffold::Actions::Delete(T)`
   - [x] `ActiveScaffold::Actions::Edit(T)`
   - [x] `ActiveScaffold::Actions::List(T)`
   - [x] `ActiveScaffold::Actions::New(T)`

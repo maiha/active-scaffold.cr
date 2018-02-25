@@ -3,7 +3,7 @@ module ActiveScaffold
     class Core(T)
       include Base(T)
 
-      CHILD_CONFIG_NAMES = %w( new create list show edit update )
+      CHILD_CONFIG_NAMES = %w( new create list show edit update delete )
       
       # @list : List(T)?
       # def list

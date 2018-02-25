@@ -64,13 +64,28 @@ module ActiveScaffold::Default
     COLUMNS_DEL      = inherit
   end
 
+  # config.delete
+  module Delete
+    ACTIONS          = inherit
+    ACTIONS_ADD      = inherit
+    ACTIONS_DEL      = inherit
+
+    ACTION_LINKS     = inherit
+    ACTION_LINKS_ADD = inherit
+    ACTION_LINKS_DEL = inherit
+
+    COLUMNS          = inherit
+    COLUMNS_ADD      = inherit
+    COLUMNS_DEL      = inherit
+  end
+
   # config.list
   module List
     ACTIONS          = inherit
     ACTIONS_ADD      = inherit
     ACTIONS_DEL      = inherit
 
-    ACTION_LINKS     = %w( new show edit )
+    ACTION_LINKS     = %w( new show edit delete )
     ACTION_LINKS_ADD = inherit
     ACTION_LINKS_DEL = inherit
 
@@ -102,7 +117,7 @@ module ActiveScaffold::Default
     ACTIONS_ADD      = inherit
     ACTIONS_DEL      = inherit
 
-    ACTION_LINKS     = %w( list show )
+    ACTION_LINKS     = %w( list show delete )
     ACTION_LINKS_ADD = inherit
     ACTION_LINKS_DEL = inherit
 

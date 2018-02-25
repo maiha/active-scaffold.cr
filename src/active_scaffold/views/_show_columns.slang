@@ -2,8 +2,8 @@ dl
   - config.columns.each do |column|
     dt= column.label
     - if column.is_a? ActiveScaffold::Data::Column
-      - css_class = "#{column.name}-view #{column.css_class}"
-      dd class="#{css_class.strip}"
+      - css = "#{column.name}-view #{column.css}".strip
+      dd class=css
         - value = show_record_value(config, column, record)
         - case value
         - when /\n/
