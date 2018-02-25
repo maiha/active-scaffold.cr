@@ -8,7 +8,7 @@ module ActiveScaffold
       {% end %}
       
       def self.active_scaffold_config : ActiveScaffold::Config::Core(T)
-        @@active_scaffold_config ||= ActiveScaffold::Config::Core(T).new(ActiveScaffold::Config::Default(T).new)
+        @@active_scaffold_config ||= ActiveScaffold::Config::Core(T).new(ActiveScaffold::Config::Global(T).new)
       end
 
       def self.active_scaffold(&block)

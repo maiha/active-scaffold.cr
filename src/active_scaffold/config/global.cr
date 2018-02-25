@@ -1,8 +1,11 @@
 module ActiveScaffold
   module Config
-    class Default(T)
+    class Global(T)
       include Base(T)
 
+      ACTIONS_ALL = %w( list create show update delete search nested subform )
+      ACTIONS_ON  = %w( new list show edit )
+      
       def initialize
         @base = self
       end
@@ -21,10 +24,10 @@ module ActiveScaffold
 
       private def build_actions : Data::Actions(T)
         hash = Hash(String, Data::Action(T)).new
-        %w( list create show update delete search nested subform ).each do |name|
+        ACTIONS_ALL.each do |name|
           hash[name] = Data::Action(T).new(name)
         end
-        Data::Actions(T).new(hash).tap &.set(%w( list show edit ))
+        Data::Actions(T).new(hash).tap &.set(ACTIONS_ON)
       end
 
       private def build_action_links : Data::ActionLinks(T)

@@ -20,13 +20,23 @@ module ActiveScaffold::Actions
             required(k) { |f| !f.nil? }
           end
         end
-        record.set_attributes(validator.validate!)
 
         label = "%s" % [{{T.name.stringify}}]
-        if record.valid? && record.save
+
+        
+        if validator.valid?
+          record.set_attributes(validator.params)
+          record.save
+        end
+
+        if validator.valid? && record.valid?
           flash["success"] = as_("Created %s successfully.") % [label]
           redirect_to "/%s" % controller_name
         else
+          validator.errors.each do |e|
+            # TODO: This depends on inner class of Granite::ORM
+            record.errors << Granite::ORM::Error.new(e.param, e.message)
+          end
           flash["danger"] = as_("Could not create %s.") % [label]
           new(record)
         end

@@ -1,10 +1,5 @@
 require "./spec_helper"
 
-private def user_columns
-  default = ActiveScaffold::Config::Default(User).new
-  ActiveScaffold::Config::Core(User).new(default).columns
-end
-
 describe ActiveScaffold::Data::Columns do
   it "contains timestamp in default" do
     columns = ActiveScaffold::Data::Columns(User).content_columns
