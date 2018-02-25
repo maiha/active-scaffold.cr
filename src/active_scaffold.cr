@@ -7,6 +7,7 @@ module ActiveScaffold(T)
 end
 
 require "./active_scaffold/data/*"
+require "./active_scaffold/default"
 require "./active_scaffold/configure"
 require "./active_scaffold/actions/*"
 require "./active_scaffold/helpers/*"

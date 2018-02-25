@@ -114,6 +114,18 @@ This writes following files if missing.
 - `src/controllers/users_controller.cr`
 - `src/views/users` -> `../../lib/active_scaffold/src/active_scaffold/views`
 
+## global settings
+
+You can put global settings in `ActiveScaffold::Default` that sets default values to all controllers.
+
+```crystal
+ActiveScaffold::Default::List::PAGING = {limit: 5}
+```
+
+All configurable parameters are in `ActiveScaffold::Default`.
+See https://github.com/maiha/active-scaffold.cr/wiki/API:-Global-settings
+
+
 ## TODO
 
 - data
@@ -132,17 +144,18 @@ This writes following files if missing.
   - [ ] `ActiveScaffold::Config::Search(T)`
   - [x] `ActiveScaffold::Config::Show(T)`
 - actions
-  - [ ] `ActiveScaffold::Actions::Create(T)`
+  - [x] `ActiveScaffold::Actions::Create(T)`
   - [ ] `ActiveScaffold::Actions::Destroy(T)`
   - [x] `ActiveScaffold::Actions::Edit(T)`
   - [x] `ActiveScaffold::Actions::List(T)`
-  - [ ] `ActiveScaffold::Actions::New(T)`
+  - [x] `ActiveScaffold::Actions::New(T)`
   - [x] `ActiveScaffold::Actions::Show(T)`
   - [x] `ActiveScaffold::Actions::Update(T)`
 - features
   - [x] debug
   - [x] pagination
   - [x] sorting
+  - [x] global settings
   - [ ] ajax
   - [ ] search
   - [ ] in place editor

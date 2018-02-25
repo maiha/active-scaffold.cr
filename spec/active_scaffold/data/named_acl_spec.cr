@@ -6,12 +6,6 @@ private def new_filter(max : Int32 = 5)
   NamedFilter.new(hash)
 end
 
-private def even_filter(max : Int32 = 5)
-  hash = Hash(String, NamedValue).new
-  (1..max).each{|i| hash[i.to_s] = NamedValue.new(i.to_s, i)}
-  EvenFilter.new(hash)
-end
-
 private record NamedValue, name : String, value : Int32? = 0
 
 private class NamedFilter
@@ -31,8 +25,6 @@ private class EvenFilter
 
   def initialize(@hash : Hash(String, NamedValue))
   end
-
-  negative (1..10).to_a.select(&.odd?).map(&.to_s)
 end
 
 private def empty
@@ -107,24 +99,6 @@ describe ActiveScaffold::Data::Columns do
     end
   end
 
-  describe "#negative" do
-    it "returns a raw object for blacklist" do
-      filter = new_filter(5)
-      filter.negative.concat(["1", "5"])
-      filter.names.should eq ["2", "3", "4"]
-    end
-  end
-
-  describe "(acl)" do
-    it "respects negative rather than positive" do
-      filter = new_filter(5)
-      filter.set("1")
-      filter.negative.add("1")
-      filter.positive.add("1")
-      filter.names.should eq empty
-    end
-  end
-
   describe "#[]?" do
     it "returns an element if exists" do
       filter = new_filter(5)
@@ -162,16 +136,6 @@ describe ActiveScaffold::Data::Columns do
       
       filter1.add("3")
       filter2.names.should eq ["1", "2"]
-    end
-  end
-
-  describe "negative macro" do
-    it "doesn't contain timestamp by setting negative" do
-      filter1 = new_filter(4)
-      filter2 = even_filter(4)
-
-      filter1.names.should eq ["1", "2", "3", "4"]
-      filter2.names.should eq ["2", "4"]
     end
   end
 end

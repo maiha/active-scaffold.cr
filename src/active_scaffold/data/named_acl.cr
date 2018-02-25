@@ -6,25 +6,8 @@ module ActiveScaffold
 
       def_clone
 
-      property positive : Set(String) = build_positive
-      property negative : Set(String) = build_negative
-
-      macro positive(value)
-        def build_positive
-          v = {{value}}
-          v.is_a?(Array) ? Set.new(v) : v
-        end
-      end
-
-      macro negative(value)
-        def build_negative
-          v = {{value}}
-          v.is_a?(Array) ? Set.new(v) : v
-        end
-      end
-
-      positive Set(String).new
-      negative Set(String).new
+      property positive : Set(String) = Set(String).new
+      property negative : Set(String) = Set(String).new
 
       def clear
         self.positive = Set(String).new

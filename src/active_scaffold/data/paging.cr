@@ -17,9 +17,9 @@ module ActiveScaffold
         @type   = type   || Type::FINITE
         @order  = order  || "id"
         @limit  = limit  || 15
+        @window = window || 5
         @count  = count  || 0
         @index  = index  || 0
-        @window = window || 5
       end
 
       def sql : String
